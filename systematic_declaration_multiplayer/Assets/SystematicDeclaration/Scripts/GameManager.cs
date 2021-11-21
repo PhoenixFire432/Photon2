@@ -13,6 +13,14 @@ namespace SystematicDeclaration.MultiplayerGame
         #region Public Variables
         public GameObject playerPrefab;
         public PlayerManager player;
+        public GameObject dinosaurs_win_canvas;
+        #endregion
+
+        #region Unity Callbacks
+        private void Start()
+        {
+            dinosaurs_win_canvas.SetActive(false);
+        }
         #endregion
 
         #region Photon Callbacks
@@ -32,16 +40,13 @@ namespace SystematicDeclaration.MultiplayerGame
         }
         #endregion
 
-        #region Public Methods
-        public void Start(){}
+        #region Photon Utilities
 
         public void LeaveRoom()
         {
             PhotonNetwork.LeaveRoom();
         }
-        #endregion
 
-        #region Private Methods
         void LoadArena()
         {
             if (!PhotonNetwork.IsMasterClient)
@@ -50,6 +55,14 @@ namespace SystematicDeclaration.MultiplayerGame
             }
             Debug.LogFormat("loading level. {0} players", PhotonNetwork.CurrentRoom.PlayerCount);
             PhotonNetwork.LoadLevel("Main");
+        }
+        #endregion
+
+        #region Public Methods
+        public void EggHit ()
+        {
+            Debug.Log("egg hit by player's ammunition (dinosaur)");
+            dinosaurs_win_canvas.SetActive(true);
         }
         #endregion
     }

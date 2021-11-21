@@ -164,6 +164,7 @@ namespace SystematicDeclaration.MultiplayerGame
             GameObject projectile = PhotonNetwork.Instantiate(ammo[current_ammo_value].name, ammo_fire_anchor.position, Quaternion.identity);
             //Debug.Log("fire_anchor\n eul: " + ammo_fire_anchor.eulerAngles + "|| loc: " + ammo_fire_anchor.localEulerAngles + "\nbarrel\n eul: " + cannon_barrel.eulerAngles + "loc: " + cannon_barrel.localEulerAngles);
             projectile.GetComponent<Rigidbody>().AddForce(ammo_fire_anchor.transform.forward * force_value * 100);
+            FindObjectOfType<AudioManager>().Play("Shoot");
         }
         #endregion
 
