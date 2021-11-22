@@ -352,7 +352,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -392,6 +392,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &347505128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347505126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 2
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &377021908
 GameObject:
   m_ObjectHideFlags: 0
@@ -2376,15 +2398,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3116383193121998465, guid: a312e76a274dd584fad8de4e94c2cb38, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.6252241
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3116383193121998465, guid: a312e76a274dd584fad8de4e94c2cb38, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.8587484
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3116383193121998465, guid: a312e76a274dd584fad8de4e94c2cb38, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.4575443
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3116383193121998465, guid: a312e76a274dd584fad8de4e94c2cb38, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2423,6 +2445,10 @@ PrefabInstance:
       value: Game Manager
       objectReference: {fileID: 0}
     - target: {fileID: 8571075507323097447, guid: a312e76a274dd584fad8de4e94c2cb38, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 7792912808051675272}
+    - target: {fileID: 8571075507323097447, guid: a312e76a274dd584fad8de4e94c2cb38, type: 3}
       propertyPath: playerPrefab
       value: 
       objectReference: {fileID: 2635277044340016156, guid: 48e39c918decd6c45a45629bc7e49991, type: 3}
@@ -2441,12 +2467,39 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8571075507323097447, guid: a312e76a274dd584fad8de4e94c2cb38, type: 3}
   m_PrefabInstance: {fileID: 5476392659375190905}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5476392659375190907}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33824cad6376367439648cda3a6f94e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5476392659375190907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7085794403663662612, guid: a312e76a274dd584fad8de4e94c2cb38, type: 3}
+  m_PrefabInstance: {fileID: 5476392659375190905}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5476392659375190908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5476392659375190907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 3
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &7792912808051675271
 PrefabInstance:
   m_ObjectHideFlags: 0

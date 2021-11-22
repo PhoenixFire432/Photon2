@@ -75,8 +75,8 @@ namespace SystematicDeclaration.MultiplayerGame
         #region Instantiations
         private int current_ammo_value = 0;
 
-        private float 
-            look_x, look_y, 
+        private float
+            look_x, look_y,
             move_x, move_y = 0;
 
         private Vector3 rot_input = Vector3.forward;
@@ -91,43 +91,22 @@ namespace SystematicDeclaration.MultiplayerGame
         #region MonoBehavior Callbacks
         private void Start()
         {
-            if (camera_prefab == null)
-            {
-                Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'", this);
-            }
-            else
-            {
-                // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-                player_ref = PhotonNetwork.Instantiate(this.camera_prefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
-                player_pv = player_ref.GetComponent<PhotonView>();
-
-                // setup ammo preview
-                ammo_preview_ref = Instantiate(ammo[current_ammo_value], ammo_preview_anchor);
-                ammo_preview_ref.GetComponent<Rigidbody>().isKinematic = true;
-                ammo_preview_ref.transform.localScale = new Vector3(.6f, .6f, .6f);
-
-
-                //setup custom properties
-                //properties = new PhotonHashTable();
-                //properties.Add("cannon_player_exists", false);
-                //properties.Add("blocks_player_exists", false);
-                //PhotonNetwork.SetPlayerCustomProperties(properties);
-            }
         }
 
         private void Update()
         {
-            if (!player_pv.IsMine)
-            {
-                return;
-            }
+            //if (!player_pv.IsMine)
+            //{
+            //    return;
+            //}
+            if (player_pv == null) return;
 
             ProcessInputs();
         }
         #endregion
 
         #region InputProcessing
-        private void ProcessInputs ()
+        private void ProcessInputs()
         {
             look_x = Input.GetAxis(input_look_hori);
             look_y = Input.GetAxis(input_look_vert);
@@ -149,7 +128,7 @@ namespace SystematicDeclaration.MultiplayerGame
             // calculate cannon rotation
             rot_input.y += look_x * sensitivity_x * 100f * Time.deltaTime;
             rot_input.x += look_y * sensitivity_y * 100f * Time.deltaTime;
-            rot_input.x = Mathf.Clamp(rot_input.x, 80f, max_look_angle+gun_angle_offset);
+            rot_input.x = Mathf.Clamp(rot_input.x, 80f, max_look_angle + gun_angle_offset);
 
             // rotate cannon
             cannon_body.localRotation = Quaternion.Euler(new Vector3(cannon_body.localRotation.x, rot_input.y, cannon_body.localRotation.y));
@@ -158,25 +137,26 @@ namespace SystematicDeclaration.MultiplayerGame
         #endregion
 
         #region Private Functions
-        private void FireCannon ()
+        private void FireCannon()
         {
             Debug.Log("fire button hit");
             GameObject projectile = PhotonNetwork.Instantiate(ammo[current_ammo_value].name, ammo_fire_anchor.position, Quaternion.identity);
             //Debug.Log("fire_anchor\n eul: " + ammo_fire_anchor.eulerAngles + "|| loc: " + ammo_fire_anchor.localEulerAngles + "\nbarrel\n eul: " + cannon_barrel.eulerAngles + "loc: " + cannon_barrel.localEulerAngles);
             projectile.GetComponent<Rigidbody>().AddForce(ammo_fire_anchor.transform.forward * force_value * 100);
             FindObjectOfType<AudioManager>().Play("Shoot");
+            FindObjectOfType<AudioManager>().Play("DinoLaunchSound");
         }
         #endregion
 
         #region Special Player Roles
-        public void PlayAsSpectator ()
+        public void PlayAsSpectator()
         {
             // disable all special controls
             cannon_player = false;
             blocks_player = false;
         }
 
-        public void PlayAsCannon ()
+        public void PlayAsCannon()
         {
             blocks_player = false;
             // ensure there isn't already a cannon player
@@ -187,7 +167,7 @@ namespace SystematicDeclaration.MultiplayerGame
             Debug.Log("play as cannon");
         }
 
-        public void PlayAsBlocks ()
+        public void PlayAsBlocks()
         {
             cannon_player = false;
             // ensure there isn't already a blocks player
@@ -196,6 +176,27 @@ namespace SystematicDeclaration.MultiplayerGame
             blocks_player = true;
             Debug.Log("play as blocks");
         }
+        #endregion
+
+        public void CreatePlayer()
+        {
+            if (camera_prefab == null)
+            {
+                Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'", this);
+            }
+            else
+            {
+                //if (!photonView.IsMine) return;
+
+                // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
+                player_ref = PhotonNetwork.Instantiate(this.camera_prefab.name, new Vector3(0f, 15f, 0f), Quaternion.identity, 0);
+                player_pv = player_ref.GetComponent<PhotonView>();
+
+                // setup ammo preview
+                ammo_preview_ref = Instantiate(ammo[current_ammo_value], ammo_preview_anchor);
+                ammo_preview_ref.GetComponent<Rigidbody>().isKinematic = true;
+                ammo_preview_ref.transform.localScale = new Vector3(.6f, .6f, .6f);
+            }
+        }
     }
-    #endregion
 }

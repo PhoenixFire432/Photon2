@@ -20,6 +20,9 @@ namespace SystematicDeclaration.MultiplayerGame
         private void Start()
         {
             dinosaurs_win_canvas.SetActive(false);
+
+            if (!photonView.IsMine) return;
+            player.CreatePlayer();
         }
         #endregion
 
@@ -63,6 +66,7 @@ namespace SystematicDeclaration.MultiplayerGame
         {
             Debug.Log("egg hit by player's ammunition (dinosaur)");
             dinosaurs_win_canvas.SetActive(true);
+            FindObjectOfType<AudioManager>().Play("Victory");
         }
         #endregion
     }

@@ -5,26 +5,22 @@ using Photon.Pun;
 
 public class TowersManager : MonoBehaviour
 {
-    [Header("Set in Inspector")]
-    public Vector3 castlePos;
-
+    int towerLimit = 0;
     [Header("Set Dynamically")]
     public GameObject castle;
 
-    void Start()
-    {
-        //if (castle != null)
-        //{
-        //    PhotonNetwork.Destroy(castle);
-        //}
-
-        ////instantiate new castle
-        //PhotonNetwork.Instantiate("towerTester", new Vector3(5, 0, 7), Quaternion.identity, 0);
-        //castle.transform.position = castlePos;
-    }
-
     public void SpawnTower(){
-        Debug.Log("I want to spwan a tower. PLS");
-        PhotonNetwork.Instantiate("preMadeTower", new Vector3(-1, 12, 14), Quaternion.identity, 0);
+
+        if(towerLimit == 0){
+            
+            Debug.Log("I want to spwan a tower. PLS");
+            PhotonNetwork.Instantiate("preMadeTower", new Vector3(-1, 12, 14), Quaternion.identity, 0);
+            towerLimit++;
+        }
+        else
+        {
+            Debug.Log("You already have a tower!");
+            //PhotonNetwork.Destroy(castle);
+        }
     }
 }
