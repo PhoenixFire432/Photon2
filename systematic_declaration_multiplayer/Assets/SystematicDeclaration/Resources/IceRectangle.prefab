@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5668710397415086278}
   - component: {fileID: 5262448347029107625}
   - component: {fileID: 3427751070264518512}
+  - component: {fileID: 2498887351334113597}
+  - component: {fileID: 1265694079810963446}
   m_Layer: 0
   m_Name: IceRectangle
   m_TagString: Untagged
@@ -51,7 +53,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 3427751070264518512}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -71,6 +74,35 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!65 &2498887351334113597
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6327794151989364392}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.51, y: 3.95, z: 1.54}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1265694079810963446
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6327794151989364392}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &7111079022645482242
 PrefabInstance:
   m_ObjectHideFlags: 0
