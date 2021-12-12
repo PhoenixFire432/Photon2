@@ -61,8 +61,6 @@ namespace SystematicDeclaration.MultiplayerGame
         #region MonoBehaviorPunCallbacks Callbacks
         public override void OnConnectedToMaster()
         {
-            //base.OnConnectedToMaster();
-            Debug.Log("PUN Basics Tutorial/Launcher: OnConnectedToMaster() was called by PUN");
             if (isConnecting)
             {
                 PhotonNetwork.JoinRandomRoom();

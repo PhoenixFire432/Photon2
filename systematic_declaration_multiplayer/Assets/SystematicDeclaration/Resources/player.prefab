@@ -14,7 +14,9 @@ GameObject:
   - component: {fileID: 4235380394848445394}
   - component: {fileID: 7589273468497826869}
   - component: {fileID: 1337600144531670325}
-  - component: {fileID: 8319542317938773128}
+  - component: {fileID: 6800546267402063519}
+  - component: {fileID: 4993021177096154341}
+  - component: {fileID: 3299696205186513959}
   m_Layer: 6
   m_Name: player
   m_TagString: Untagged
@@ -29,13 +31,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2635277044340016156}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.11151343, y: -0, z: -0, w: 0.99376297}
   m_LocalPosition: {x: 0, y: 1.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 12.805, y: 0, z: 0}
 --- !u!143 &2635277044340016161
 CharacterController:
   m_ObjectHideFlags: 0
@@ -100,7 +102,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2635277044340016156}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
@@ -118,7 +120,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 95
+  field of view: 40
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -143,8 +145,44 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2635277044340016156}
-  m_Enabled: 1
---- !u!114 &8319542317938773128
+  m_Enabled: 0
+--- !u!114 &6800546267402063519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2635277044340016156}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a15daa8c08f1a44cab39de14c882845, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cannon_body: {fileID: 0}
+  cannon_barrel: {fileID: 0}
+  cannon_camera_anchor: {fileID: 0}
+  default_camera_anchor: {fileID: 0}
+  sensitivity_y: 1
+  sensitivity_x: 1
+  max_look_angle: 90
+  gun_angle_offset: 80
+--- !u!114 &4993021177096154341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2635277044340016156}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2776b4caf40f9cb46b9c9dc73b558721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3.7
+  sensitivity: 1.3
+  x: 0
+  y: 0
+--- !u!114 &3299696205186513959
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,6 +191,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2635277044340016156}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d175c5b58f9b00449705ac56aab2476, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b8ffab1ecf5f37469d3e3ce1964fb91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

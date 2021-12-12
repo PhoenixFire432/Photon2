@@ -10,58 +10,47 @@ namespace SystematicDeclaration.MultiplayerGame
     public class GameManager : MonoBehaviourPunCallbacks
     {
 
-        #region Public Variables
-        public GameObject playerPrefab;
-        public PlayerManager player;
+        #region Fields
         public GameObject dinosaurs_win_canvas;
+        private PlayerManager pm;
         #endregion
 
         #region Unity Callbacks
         private void Start()
         {
+            pm = GameObject.Find("Local Player Manager").GetComponent<PlayerManager>();
+
             dinosaurs_win_canvas.SetActive(false);
-
-            if (!photonView.IsMine) return;
-            player.CreatePlayer();
+            pm.CreatePlayer();
         }
         #endregion
 
-        #region Photon Callbacks
-        public override void OnLeftRoom()
-        {
-            SceneManager.LoadScene(0);
-        }
-
-        public override void OnPlayerEnteredRoom(Player newPlayer)
-        {
-            Debug.LogFormat("player {0} entered room", newPlayer.NickName);
-        }
-
-        public override void OnPlayerLeftRoom(Player otherPlayer)
-        {
-            Debug.LogFormat("player {0} left room", otherPlayer.NickName);
-        }
-        #endregion
-
-        #region Photon Utilities
+        #region Photon
 
         public void LeaveRoom()
         {
             PhotonNetwork.LeaveRoom();
         }
 
+        public override void OnLeftRoom()
+        {
+            SceneManager.LoadScene(0);
+        }
+
         void LoadArena()
         {
-            if (!PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.IsMasterClient)
             {
-                Debug.LogError("trying to load arena : FAILED -- is not the master client");
-            }
-            Debug.LogFormat("loading level. {0} players", PhotonNetwork.CurrentRoom.PlayerCount);
-            PhotonNetwork.LoadLevel("Main");
+                PhotonNetwork.LoadLevel("Main");
+            } else
+            {
+                Debug.LogError("failed to load arena: not master client");
+            }            
         }
         #endregion
 
         #region Public Methods
+        [PunRPC]
         public void EggHit ()
         {
             Debug.Log("egg hit by player's ammunition (dinosaur)");

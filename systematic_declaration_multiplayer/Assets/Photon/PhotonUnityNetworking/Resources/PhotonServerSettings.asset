@@ -41,6 +41,17 @@ MonoBehaviour:
   - RespawnSpaceship
   - AttachCannon
   - Server_FireSounds
+  - EggHit
+  - DisableCannon
+  - EnableCannon
+  - SetCannonPlayer
+  - SetCannonPlayerToRemote
+  - MoveCannon
+  - SetupAmmoPreview
+  - InitializeAmmoPreview
+  - BuilderWins
+  - SetBlocksPlayerToRemote
+  - DisableBlocks
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

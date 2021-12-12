@@ -1,0 +1,63 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using Photon.Pun;
+
+namespace SysDec.MultiplayerGame
+{
+    public class BlocksManager : MonoBehaviour
+    {
+        #region Fields
+        [Header("Blocks")]
+        public BlockTemplate[] blocks;
+
+        [SerializeField]
+        private int starting_points_blocks;
+
+        [Header("Label Texts")]
+        public string points_remaining_label_text;
+        public string button_lead_label_text;
+        public string button_middle_label_text;
+        public string button_tail_label_text;
+
+        [Header("References")]
+        public Text points_remaining_text;
+        public Transform block_spawn_location;
+
+        // private fields
+        private int current_points_blocks;
+        private List<GameObject> spawned_blocks;
+        #endregion
+
+        private void OnEnable()
+        {
+            // initialize values
+            current_points_blocks = starting_points_blocks;
+            points_remaining_text.text = points_remaining_label_text + current_points_blocks;
+            spawned_blocks = new List<GameObject>();
+
+            // set ui texts
+            foreach (BlockTemplate b in blocks)
+            {
+                b.block_button.gameObject.GetComponentInChildren<Text>().text 
+                    = button_lead_label_text + b.block_name 
+                    + button_middle_label_text + b.block_cost 
+                    + button_tail_label_text;
+            }
+        }
+
+        public void PurchaseBlock (BlockTemplate b)
+        {
+            if (current_points_blocks < b.block_cost)
+            {
+                Debug.Log("Not enough funds (blocks)"); // Todo: make a notification on the screen for this
+                return;
+            }
+
+            current_points_blocks -= b.block_cost;
+            points_remaining_text.text = points_remaining_label_text + current_points_blocks;
+            spawned_blocks.Add(PhotonNetwork.Instantiate(b.block_prefab.name, block_spawn_location.position, Quaternion.identity));
+        }
+    }
+}
