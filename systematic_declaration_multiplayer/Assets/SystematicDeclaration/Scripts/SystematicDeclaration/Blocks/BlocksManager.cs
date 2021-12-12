@@ -27,7 +27,7 @@ namespace SysDec.MultiplayerGame
 
         // private fields
         private int current_points_blocks;
-        private List<GameObject> spawned_blocks;
+        public List<GameObject> spawned_blocks;
         #endregion
 
         private void OnEnable()

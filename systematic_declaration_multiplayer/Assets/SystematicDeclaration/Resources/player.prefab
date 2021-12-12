@@ -180,6 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5.5
   sensitivity: 1.7
+  view_angle: 0.995
   x: 0
   y: 0
 --- !u!114 &3299696205186513959

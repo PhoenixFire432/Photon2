@@ -4,19 +4,22 @@ using System.Collections.Generic;
 using SystematicDeclaration.MultiplayerGame;
 using UnityEngine;
 
-public class Egg : MonoBehaviour
+namespace SysDec.MultiplayerGame
 {
-    PhotonView gm;
+    public class Egg : MonoBehaviour
+    {
+        GameManager gm;
 
-    public void Start()
-    {
-        gm = GameObject.Find("Game Manager").GetComponent<PhotonView>();
-    }
-    public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag.Equals("Dinosaur"))
+        public void Start()
         {
-            gm.RPC("EggHit", RpcTarget.AllBuffered);
+            gm = GameObject.Find("Scripts").GetComponent<GameManager>();
+        }
+        public void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.tag.Equals("Dinosaur"))
+            {
+                gm.EggHit();//.RPC("EggHit", RpcTarget.AllBuffered);
+            }
         }
     }
 }
