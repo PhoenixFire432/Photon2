@@ -8,17 +8,17 @@ namespace SysDec.MultiplayerGame
 {
     public class Egg : MonoBehaviour
     {
-        GameManager gm;
+        PhotonView gm;
 
         public void Start()
         {
-            gm = GameObject.Find("Scripts").GetComponent<GameManager>();
+            gm = GameObject.Find("Scripts").GetComponent<PhotonView>();
         }
         public void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.tag.Equals("Dinosaur"))
             {
-                gm.EggHit();//.RPC("EggHit", RpcTarget.AllBuffered);
+                gm.RPC("EggHit", RpcTarget.AllBuffered);
             }
         }
     }

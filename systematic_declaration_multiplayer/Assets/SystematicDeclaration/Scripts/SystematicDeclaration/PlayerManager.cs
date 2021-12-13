@@ -28,6 +28,26 @@ namespace SysDec.MultiplayerGame
             player.GetComponent<AudioListener>().enabled = true;
         }
 
+        [PunRPC]
+        public void CannonGoAhead()
+        {
+            PlayerCannonController pcc = player.GetComponent<PlayerCannonController>();
+            if (pcc.enabled)
+            {
+                pcc.cannon_go_ahead = true;
+            }
+        }
+
+        public void StopBlocks()
+        {
+            PlayerBlocksController pbc = player.GetComponent<PlayerBlocksController>();
+            if (pbc.enabled)
+            {
+                pbc.can_move_blocks = false;
+            }
+        }
+
+        #region Set Player Special Roles
         public void SetCannonPlayerToLocal()
         {
             // ensure that one player is not both blocks and cannon
@@ -65,5 +85,6 @@ namespace SysDec.MultiplayerGame
         {
             player.GetComponent<Player>().DisableBlocks();
         }
+        #endregion
     }
 }

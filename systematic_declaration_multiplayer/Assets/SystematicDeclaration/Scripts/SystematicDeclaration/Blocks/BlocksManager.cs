@@ -6,7 +6,7 @@ using Photon.Pun;
 
 namespace SysDec.MultiplayerGame
 {
-    public class BlocksManager : MonoBehaviour
+    public class BlocksManager : MonoBehaviourPunCallbacks
     {
         #region Fields
         [Header("Blocks")]
@@ -14,6 +14,8 @@ namespace SysDec.MultiplayerGame
 
         [SerializeField]
         private int starting_points_blocks;
+        [SerializeField]
+        private float min_velocity_threshold;
 
         [Header("Label Texts")]
         public string points_remaining_label_text;
@@ -27,6 +29,7 @@ namespace SysDec.MultiplayerGame
 
         // private fields
         private int current_points_blocks;
+        private bool cannon_out_of_shots = false;
         public List<GameObject> spawned_blocks;
         #endregion
 
@@ -47,6 +50,26 @@ namespace SysDec.MultiplayerGame
             }
         }
 
+        private void Update()
+        {
+            if (cannon_out_of_shots)
+            {
+                bool game_over = true;
+                foreach (GameObject b in spawned_blocks)
+                {
+                    if (b.GetComponent<Rigidbody>().velocity.magnitude >= min_velocity_threshold)
+                    {
+                        game_over = false;
+                    }
+                }
+                if (game_over)
+                {
+                    this.photonView.RPC("BuilderWins", RpcTarget.AllBuffered);
+                    cannon_out_of_shots = false;
+                }
+            }
+        }
+
         public void PurchaseBlock (BlockTemplate b)
         {
             if (current_points_blocks < b.block_cost)
@@ -58,6 +81,12 @@ namespace SysDec.MultiplayerGame
             current_points_blocks -= b.block_cost;
             points_remaining_text.text = points_remaining_label_text + current_points_blocks;
             spawned_blocks.Add(PhotonNetwork.Instantiate(b.block_prefab.name, block_spawn_location.position, Quaternion.identity));
+        }
+
+        [PunRPC]
+        public void OutOfShots()
+        {
+            cannon_out_of_shots = true;
         }
     }
 }

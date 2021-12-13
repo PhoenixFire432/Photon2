@@ -25,6 +25,9 @@ namespace SysDec.MultiplayerGame
 
         private CannonBehaviors cb;
         private AmmoManager am;
+
+        [Header("Debugging")]
+        public bool cannon_go_ahead = false;
         #endregion
 
         #region Editor
@@ -46,6 +49,7 @@ namespace SysDec.MultiplayerGame
         #endregion
 
         #region Methods
+        #region Monodevelop Callbacks
         // Update is called once per frame
         void Update()
         {
@@ -56,7 +60,7 @@ namespace SysDec.MultiplayerGame
             move_y = Input.GetAxis(input_move_vert);
 
             // register fire button + act
-            if (Input.GetKeyDown("space"))
+            if (cannon_go_ahead && Input.GetKeyDown("space"))
             {
                 Debug.Log("space pressed");
                 if (am.AmmoReadyToFire()) cb.FireCannon(am.AmmoFired());
@@ -83,12 +87,13 @@ namespace SysDec.MultiplayerGame
             this.cb = GameObject.Find("Scripts").GetComponent<CannonBehaviors>();
             this.am = GameObject.Find("Scripts").GetComponent<AmmoManager>();
 
-            //  transfer ownership of the gun-- this allows the photonplayer to update it
+            //  transfer ownership of the gun -- this allows the photonplayer to update it
             cannon_barrel.gameObject.GetComponent<PhotonView>().TransferOwnership(local_player);
             cannon_body.gameObject.GetComponent<PhotonView>().TransferOwnership(local_player);
 
             Debug.Log(this.gameObject.GetComponent<PhotonView>().Owner.NickName + " cannon enabled"); ;
         }
+        #endregion
         #endregion
     }
 }

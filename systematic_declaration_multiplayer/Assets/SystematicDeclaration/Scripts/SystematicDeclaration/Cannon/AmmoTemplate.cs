@@ -15,6 +15,7 @@ namespace SysDec.MultiplayerGame
         public float ammo_fire_force;
         public GameObject ammo_prefab;
         public Button ammo_button;
+        public string ammo_sound_name;
 
         private void Start()
         {

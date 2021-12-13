@@ -162,6 +162,7 @@ MonoBehaviour:
   cannon_barrel: {fileID: 0}
   cannon_camera_anchor: {fileID: 0}
   default_camera_anchor: {fileID: 0}
+  cannon_go_ahead: 0
   sensitivity_y: 1
   sensitivity_x: 1
   max_look_angle: 90
@@ -181,6 +182,7 @@ MonoBehaviour:
   speed: 5.5
   sensitivity: 1.7
   view_angle: 0.995
+  can_move_blocks: 1
   x: 0
   y: 0
 --- !u!114 &3299696205186513959

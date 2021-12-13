@@ -26,6 +26,7 @@ namespace SysDec.MultiplayerGame
             PurgeAmmo();
             ammo_preview = PhotonNetwork.Instantiate(prefab.name, preview_anchor.position, Quaternion.identity, 0);
             ammo_preview.transform.localScale = preview_scale;
+            prefab.GetComponent<AudioSource>().enabled = false;
         }
 
         public void PurgeAmmo ()

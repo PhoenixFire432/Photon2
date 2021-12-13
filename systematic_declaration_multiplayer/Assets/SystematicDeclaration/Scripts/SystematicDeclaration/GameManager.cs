@@ -34,6 +34,7 @@ namespace SysDec.MultiplayerGame
         // ---
 
         #region Public Methods
+        #region Game Endings
         [PunRPC]
         public void EggHit()
         {
@@ -48,7 +49,9 @@ namespace SysDec.MultiplayerGame
             Debug.Log("out of ammo!");
             builder_wins_panel.SetActive(true);
         }
+        #endregion
 
+        #region Player Special Roles
         public void EnableCannon ()
         {
             role_selection_panel.SetActive(false);
@@ -77,6 +80,17 @@ namespace SysDec.MultiplayerGame
             role_selection_panel.SetActive(true);
             blocks_panel.SetActive(false);
             this.gameObject.GetComponent<BlocksManager>().enabled = false;
+        }
+        #endregion
+
+        public void CannonGoAhead ()
+        {
+            this.gameObject.GetPhotonView().RPC("CannonGoAhead", RpcTarget.Others);
+            this.gameObject.GetComponent<PlayerManager>().StopBlocks();
+            Rigidbody egg_rb = GameObject.Find("Egg").GetComponent<Rigidbody>();
+            egg_rb.useGravity = true;
+            egg_rb.isKinematic = false;
+            blocks_panel.SetActive(false);
         }
         #endregion
     }

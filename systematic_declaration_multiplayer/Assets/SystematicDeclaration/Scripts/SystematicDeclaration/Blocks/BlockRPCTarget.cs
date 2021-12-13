@@ -22,7 +22,10 @@ public class BlockRPCTarget : MonoBehaviourPunCallbacks
     [PunRPC]
     public void DisablePhysics ()
     {
-        rb.isKinematic = true;
-        rb.useGravity = false;
+        if (rb != null)
+        {
+            rb.isKinematic = true;
+            rb.useGravity = false;
+        }
     }
 }

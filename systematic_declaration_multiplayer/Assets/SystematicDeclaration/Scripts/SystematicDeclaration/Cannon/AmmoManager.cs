@@ -29,6 +29,10 @@ namespace SysDec.MultiplayerGame
         private int current_points_cannon;
         private AmmoTemplate currently_loaded_ammo;
         private AmmoPreview ap;
+        private CannonBehaviors cb;
+
+        [Header("Debugging")]
+        public int lowest_ammo_cost;
         #endregion
 
         private void OnEnable()
@@ -36,6 +40,18 @@ namespace SysDec.MultiplayerGame
             // initialize values
             current_points_cannon = starting_points_cannon;
             ap = GameObject.Find("Scripts").GetComponent<AmmoPreview>();
+            cb = GameObject.Find("Scripts").GetComponent<CannonBehaviors>();
+
+            // finds the lowest ammo cost of all available ammo
+            // doesn't work if every ammo costs more than the starting points (unlikely)
+            lowest_ammo_cost = starting_points_cannon;
+            foreach (AmmoTemplate a in ammo)
+            {
+                if (a.ammo_cost < lowest_ammo_cost)
+                {
+                    lowest_ammo_cost = a.ammo_cost;
+                }
+            }
 
             // set ui texts
             points_remaining_text.text = points_remaining_label_text + current_points_cannon;
@@ -53,6 +69,15 @@ namespace SysDec.MultiplayerGame
         {
             currently_loaded_ammo = null;
             ap.PurgeAmmo();
+        }
+
+        private void Update()
+        {
+            // let the blocks player know that cannon is out of shots
+            if (current_points_cannon < lowest_ammo_cost)
+            {
+                cb.LastShotFired();
+            }
         }
 
         public void PurchaseAmmo (AmmoTemplate a)

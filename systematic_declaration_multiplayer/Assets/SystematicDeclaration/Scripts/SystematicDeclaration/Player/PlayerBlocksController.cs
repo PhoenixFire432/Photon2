@@ -23,6 +23,7 @@ namespace SysDec.MultiplayerGame
         private float rot_y = 0;
         private float block_rot_x = 0;
         private float block_rot_y = 0;
+        Vector3 block_direction = Vector3.zero;
         private BlocksManager bm;
         private GameObject held_block;
         private bool rotating_block = false;
@@ -30,6 +31,7 @@ namespace SysDec.MultiplayerGame
         [Header("Debug Values")]
         //public Quaternion last_camera_angle;
         //public Quaternion current_camera_angle;
+        public bool can_move_blocks = true;
         public float x = 0;
         public float y = 0;
         #endregion
@@ -67,7 +69,7 @@ namespace SysDec.MultiplayerGame
             }
 
             // register grab button press
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (can_move_blocks && Input.GetKeyDown(KeyCode.Space))
             {
                 GameObject facing_block = GetBlockFacing();
                 if (facing_block != null) GrabBlock(facing_block);
@@ -79,7 +81,7 @@ namespace SysDec.MultiplayerGame
             }
 
             // toggle block rotating vs camera rotating
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (can_move_blocks && Input.GetKeyDown(KeyCode.LeftShift))
             {
                 rotating_block = true;
             }
@@ -88,6 +90,12 @@ namespace SysDec.MultiplayerGame
             {
                 rotating_block = false;
                 block_rot_x = block_rot_y = 0;
+            }
+
+            // move block towards/away based on mouse wheel
+            if (held_block != null && (held_block.transform.position - gameObject.transform.position).magnitude>1) {
+                block_direction = held_block.transform.position - gameObject.transform.position;
+                held_block.transform.position += block_direction.normalized * Input.mouseScrollDelta.y * 100 * Time.deltaTime;
             }
         }
         #endregion
