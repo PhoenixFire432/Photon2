@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 namespace SysDec.MultiplayerGame
 {
@@ -100,18 +101,13 @@ namespace SysDec.MultiplayerGame
 
             held_block = block;
 
-            Rigidbody block_rb = block.GetComponent<Rigidbody>();
-            block_rb.isKinematic = true;
-            block_rb.useGravity = false;
-
+            block.GetComponent<PhotonView>().RPC("DisablePhysics", RpcTarget.All);
             block.transform.SetParent(this.gameObject.transform, true);
         }
 
         void ReleaseBlock (GameObject block)
         {
-            Rigidbody block_rb = block.GetComponent<Rigidbody>();
-            block_rb.isKinematic = false;
-            block_rb.useGravity = true;
+            block.GetComponent<PhotonView>().RPC("EnablePhysics", RpcTarget.All);
 
             block.transform.parent = null;
             held_block = null;

@@ -54,40 +54,41 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
+    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\Blocks\BlocksManager.cs" />
     <Compile Include="Assets\SystematicDeclaration\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\WebSocket.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextButtonTransition.cs" />
     <Compile Include="Assets\SystematicDeclaration\Scripts\Sound.cs" />
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\SocketWebTcp.cs" />
+    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\Blocks\BlockTemplate.cs" />
+    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\Cannon\AmmoPreview.cs" />
+    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\Cannon\CannonBehaviors.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChatAppIdCheckerUI.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\AppSettingsExtensions.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\NamePickGui.cs" />
     <Compile Include="Assets\SystematicDeclaration\Scripts\LocalPlayer.cs" />
     <Compile Include="Assets\SystematicDeclaration\Scripts\Launcher.cs" />
     <Compile Include="Assets\SystematicDeclaration\Scripts\GameManager.cs" />
+    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\Player\PlayerBlocksController.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChannelSelector.cs" />
+    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\Cannon\AmmoManager.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\IgnoreUiRaycastWhenInactive.cs" />
+    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\GameManager.cs" />
     <Compile Include="Assets\SystematicDeclaration\Scripts\Egg.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
     <Compile Include="Assets\SystematicDeclaration\Scripts\PlayerManager.cs" />
+    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\Cannon\FiringBehaviors.cs" />
+    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\Player\PlayerCannonController.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\FriendItem.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChatGui.cs" />
+    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\Cannon\AmmoTemplate.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextToggleIsOnTransition.cs" />
+    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\PlayerManager.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
     <Compile Include="Assets\SystematicDeclaration\Scripts\TowersManager.cs" />
-    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\Cannon\AmmoManager.cs" />
-    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\Player\PlayerCannonController.cs" />
-    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\PlayerManager.cs" />
-    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\Cannon\AmmoPreview.cs" />
-    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\Blocks\BlocksManager.cs" />
-    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\Cannon\AmmoTemplate.cs" />
-    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\Blocks\BlockTemplate.cs" />
     <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\Player\Player.cs" />
     <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\RoomManager.cs" />
-    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\Cannon\FiringBehaviors.cs" />
-    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\Cannon\CannonBehaviors.cs" />
-    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\GameManager.cs" />
-    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\Player\PlayerBlocksController.cs" />
+    <Compile Include="Assets\SystematicDeclaration\Scripts\SystematicDeclaration\Blocks\BlockRPCTarget.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />

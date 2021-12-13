@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3427751070264518512}
   - component: {fileID: 2498887351334113597}
   - component: {fileID: 1265694079810963446}
+  - component: {fileID: 8665232184223352417}
   m_Layer: 0
   m_Name: IceRectangle
   m_TagString: Untagged
@@ -103,6 +104,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8665232184223352417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6327794151989364392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0754f39927cd9cb4b8101bea229b5ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7111079022645482242
 PrefabInstance:
   m_ObjectHideFlags: 0

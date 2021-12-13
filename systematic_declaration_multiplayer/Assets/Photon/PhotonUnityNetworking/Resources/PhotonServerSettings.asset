@@ -52,6 +52,8 @@ MonoBehaviour:
   - BuilderWins
   - SetBlocksPlayerToRemote
   - DisableBlocks
+  - DisablePhysics
+  - EnablePhysics
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
