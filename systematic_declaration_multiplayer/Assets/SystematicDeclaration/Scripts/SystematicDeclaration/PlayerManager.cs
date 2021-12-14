@@ -17,8 +17,7 @@ namespace SysDec.MultiplayerGame
         private Transform blocks_camera_anchor;
 
         [Header("Debug Values")]
-        [SerializeField]
-        private GameObject player;
+        public GameObject player;
         #endregion
 
         private void Start()
@@ -59,6 +58,16 @@ namespace SysDec.MultiplayerGame
 
             // move player to proper position
             player.transform.position = cannon_camera_anchor.position;
+        }
+
+        [PunRPC]
+        public void StealAllBlocks ()
+        {
+            List<GameObject> blocks = this.gameObject.GetComponent<BlocksManager>().spawned_blocks;
+            foreach (GameObject b in blocks)
+            {
+                b.GetComponent<BlockRPCTarget>().TakeOver();
+            }
         }
 
         [PunRPC]

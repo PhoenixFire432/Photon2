@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 5977736028236598622}
   - component: {fileID: 6596460152965917979}
   - component: {fileID: -7914054840265689455}
+  - component: {fileID: -5277056313382914362}
   m_Layer: 0
   m_Name: IceCube
-  m_TagString: Untagged
+  m_TagString: TowerPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,6 +117,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0754f39927cd9cb4b8101bea229b5ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  block_sound_name: 
+--- !u!114 &-5277056313382914362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2456401477032477753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 275102c968c3f724e8f9dd930bfec0d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  block_sound_name: 
 --- !u!1001 &3862455952571568483
 PrefabInstance:
   m_ObjectHideFlags: 0

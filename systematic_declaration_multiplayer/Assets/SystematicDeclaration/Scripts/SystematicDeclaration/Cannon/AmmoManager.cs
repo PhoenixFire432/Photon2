@@ -28,6 +28,7 @@ namespace SysDec.MultiplayerGame
         // private fields
         private int current_points_cannon;
         private AmmoTemplate currently_loaded_ammo;
+        private bool last_shot_loaded = false;
         private AmmoPreview ap;
         private CannonBehaviors cb;
 
@@ -76,7 +77,11 @@ namespace SysDec.MultiplayerGame
             // let the blocks player know that cannon is out of shots
             if (current_points_cannon < lowest_ammo_cost)
             {
-                cb.LastShotFired();
+                Debug.Log("AmmoManager -- Last Shot has been loaded");
+                last_shot_loaded = true;
+
+                // prevent this from being called a ton of times;
+                lowest_ammo_cost = current_points_cannon;
             }
         }
 
@@ -112,7 +117,24 @@ namespace SysDec.MultiplayerGame
             AmmoTemplate retval = currently_loaded_ammo;
             ap.PurgeAmmo();
             currently_loaded_ammo = null;
+
+            if (last_shot_loaded)
+            {
+                //This starts the coroutine;
+                StartCoroutine(delay());
+                last_shot_loaded = false;
+            }
+
             return retval;
+        }
+
+        private IEnumerator delay()
+        {
+            //Once the condition is met this will wait for one second
+            //after that second has passed it will THEN run everything underneath the return
+            yield return new WaitForSeconds(1.0f);
+            Debug.Log("AmmoManager -- Last shot fired");
+            cb.LastShotFired();
         }
 
         public bool AmmoReadyToFire ()

@@ -85,7 +85,10 @@ namespace SysDec.MultiplayerGame
 
         public void CannonGoAhead ()
         {
-            this.gameObject.GetPhotonView().RPC("CannonGoAhead", RpcTarget.Others);
+            PhotonView pv = this.gameObject.GetPhotonView();
+            pv.RPC("CannonGoAhead", RpcTarget.Others);
+            pv.RPC("StealAllBlocks", RpcTarget.Others);
+
             this.gameObject.GetComponent<PlayerManager>().StopBlocks();
             Rigidbody egg_rb = GameObject.Find("Egg").GetComponent<Rigidbody>();
             egg_rb.useGravity = true;

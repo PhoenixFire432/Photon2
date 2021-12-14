@@ -2135,6 +2135,7 @@ MonoBehaviour:
   block_cost: 15
   block_prefab: {fileID: 7045434804378585794, guid: de7dd0a4e62cc924780740b724cf7f0b, type: 3}
   block_button: {fileID: 624119759}
+  block_sound_name: Wood Crash
 --- !u!1 &691327861
 GameObject:
   m_ObjectHideFlags: 0
@@ -2294,6 +2295,7 @@ MonoBehaviour:
   block_cost: 5
   block_prefab: {fileID: 2456401477032477753, guid: 11406c9da089f8a49b5cfdbe6ef1937d, type: 3}
   block_button: {fileID: 1031834023}
+  block_sound_name: Ice Crash
 --- !u!1 &721923746
 GameObject:
   m_ObjectHideFlags: 0
@@ -2355,9 +2357,10 @@ GameObject:
   - component: {fileID: 783187780}
   - component: {fileID: 783187779}
   - component: {fileID: 783187778}
+  - component: {fileID: 783187781}
   m_Layer: 0
   m_Name: egg platform
-  m_TagString: Untagged
+  m_TagString: TowerPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2440,6 +2443,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 783187776}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &783187781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783187776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 275102c968c3f724e8f9dd930bfec0d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  block_sound_name: 
 --- !u!1 &793748729
 GameObject:
   m_ObjectHideFlags: 0
@@ -2980,9 +2996,10 @@ GameObject:
   - component: {fileID: 1070936083}
   - component: {fileID: 1070936082}
   - component: {fileID: 1070936081}
+  - component: {fileID: 1070936085}
   m_Layer: 0
   m_Name: floor
-  m_TagString: Untagged
+  m_TagString: TowerPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3063,6 +3080,19 @@ Transform:
   m_Father: {fileID: 1518506943}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1070936085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070936080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 275102c968c3f724e8f9dd930bfec0d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  block_sound_name: 
 --- !u!1 &1092410876
 GameObject:
   m_ObjectHideFlags: 0
@@ -4018,6 +4048,36 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Stone Crash
+    clip: {fileID: 8300000, guid: efe6da4377d158d4483395f73e28699c, type: 3}
+    volume: 0.546
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Ice Crash
+    clip: {fileID: 8300000, guid: ac58fa6d4180c3748bc552e8ba0e9da2, type: 3}
+    volume: 0.606
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Spawn Block
+    clip: {fileID: 8300000, guid: c8e5830f2c5f8734ba02da6ff20d0ba6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Pick up Block
+    clip: {fileID: 8300000, guid: 1136ab13e73eab945b3e52bfda56f036, type: 3}
+    volume: 0.675
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Dino Impact
+    clip: {fileID: 8300000, guid: ee0a61ef63b417e488156690930c29ba, type: 3}
+    volume: 0.69
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!114 &1492103510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4055,6 +4115,7 @@ MonoBehaviour:
   button_middle_label_text: ' ('
   button_tail_label_text: ' pts)'
   points_remaining_text: {fileID: 1731340774}
+  lowest_ammo_cost: 0
 --- !u!114 &1492103512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4083,7 +4144,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammo_fire_anchor: {fileID: 1723869324}
-  min_velocity_threshold: 0
+  last_shot_fired: 0
+  min_velocity_threshold: 0.03
 --- !u!114 &1492103514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4398,7 +4460,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1650247088
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4754,6 +4816,7 @@ MonoBehaviour:
   block_cost: 10
   block_prefab: {fileID: 1641431733062609223, guid: d92cc0f93aa461f4ca8f6f73a12b1f0f, type: 3}
   block_button: {fileID: 488302809}
+  block_sound_name: Wood Crash
 --- !u!1 &1799745400
 GameObject:
   m_ObjectHideFlags: 0
@@ -5073,6 +5136,7 @@ MonoBehaviour:
   block_cost: 10
   block_prefab: {fileID: 6327794151989364392, guid: d3643521b7b8aea44ba8406a61f8cb23, type: 3}
   block_button: {fileID: 469565501}
+  block_sound_name: Ice Crash
 --- !u!1 &1938676430
 GameObject:
   m_ObjectHideFlags: 0
@@ -5230,6 +5294,7 @@ MonoBehaviour:
   block_cost: 20
   block_prefab: {fileID: 4945086389323429545, guid: f1b69d5b4623ca5448585468fb9fd276, type: 3}
   block_button: {fileID: 1092410878}
+  block_sound_name: Stone Crash
 --- !u!1 &2064015420
 GameObject:
   m_ObjectHideFlags: 0
@@ -5309,6 +5374,7 @@ MonoBehaviour:
   block_cost: 30
   block_prefab: {fileID: 3071827935679526810, guid: 35854778816c7c14aabcc966f9d50326, type: 3}
   block_button: {fileID: 580423648}
+  block_sound_name: Stone Crash
 --- !u!1 &2093340597
 GameObject:
   m_ObjectHideFlags: 0

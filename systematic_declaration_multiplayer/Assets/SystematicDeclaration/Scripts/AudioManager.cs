@@ -1,8 +1,9 @@
 using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using Photon.Pun;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : MonoBehaviourPunCallbacks
 {
     public Sound[] sounds;
 
@@ -38,6 +39,7 @@ public class AudioManager : MonoBehaviour
         Play("Background Music");
     }
 
+    [PunRPC]
     public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);

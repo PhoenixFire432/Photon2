@@ -10,6 +10,7 @@ namespace SysDec.MultiplayerGame {
         public int block_cost;
         public GameObject block_prefab;
         public Button block_button;
+        public string block_sound_name;
 
         private void Start()
         {

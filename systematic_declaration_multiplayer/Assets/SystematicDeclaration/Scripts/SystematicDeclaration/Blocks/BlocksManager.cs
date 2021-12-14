@@ -80,7 +80,10 @@ namespace SysDec.MultiplayerGame
 
             current_points_blocks -= b.block_cost;
             points_remaining_text.text = points_remaining_label_text + current_points_blocks;
-            spawned_blocks.Add(PhotonNetwork.Instantiate(b.block_prefab.name, block_spawn_location.position, Quaternion.identity));
+            
+            GameObject new_block = PhotonNetwork.Instantiate(b.block_prefab.name, block_spawn_location.position, Quaternion.identity);
+            new_block.GetComponent<BlockSounds>().block_sound_name = b.block_sound_name;
+            spawned_blocks.Add(new_block);
         }
 
         [PunRPC]
@@ -88,5 +91,7 @@ namespace SysDec.MultiplayerGame
         {
             cannon_out_of_shots = true;
         }
+
+   
     }
 }

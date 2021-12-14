@@ -9,40 +9,58 @@ namespace SysDec.MultiplayerGame
     {
         public Transform ammo_fire_anchor;
         private Rigidbody projectile_rb;
-        private bool last_shot_signal = false;
-        public bool last_shot_fired = false;
+        private PhotonView scripts;
+
+        //private bool shot_stopped_moving;
+
+        public bool last_shot_fired;
         public float min_velocity_threshold;
+
+        private void Start()
+        {
+            last_shot_fired = false;
+            scripts = GameObject.Find("Scripts").GetComponent<PhotonView>();
+        }
 
         public void FireCannon(AmmoTemplate ammo)
         {
+            // spawn ammo
             GameObject projectile = PhotonNetwork.Instantiate(ammo.ammo_prefab.name, ammo_fire_anchor.position, Quaternion.identity);
             
+            // fire ammo
             projectile_rb = projectile.GetComponent<Rigidbody>();
-            projectile_rb.isKinematic = false;
+            projectile_rb.isKinematic = false; 
             projectile_rb.useGravity = true;
             projectile_rb.AddForce(ammo_fire_anchor.transform.forward * ammo.ammo_fire_force * 100);
 
-            FindObjectOfType<AudioManager>().Play("Shoot");
-            FindObjectOfType<AudioManager>().Play(ammo.ammo_sound_name);
+            // play sounds
+            scripts.RPC("Play", RpcTarget.All, "Shoot");
+            scripts.RPC("Play", RpcTarget.All, ammo.ammo_sound_name);
 
-            if(last_shot_signal) last_shot_fired = true;
+            if (last_shot_fired)
+            {
+                last_shot_fired = false;
+            }
         }
 
         public void LastShotFired ()
         {
-            last_shot_signal = true;
+            last_shot_fired = true;
+            Debug.Log("LAST SHOT HAS BEEN FIRED");
         }
 
-        private void Update()
+        // voodoo -- this is the result of a ton of fiddling to kill bugs
+        private void LateUpdate()
         {
-            // if the last shot has been fired (and has stopped moving)
-            // tell the other player to start checking if the game is over
+            //if (projectile_rb != null) Debug.Log(projectile_rb.velocity.magnitude);
             if (last_shot_fired)
             {
-                Debug.Log("velocity: " + projectile_rb.velocity.magnitude + " " + "threshold: " + min_velocity_threshold);
+                Debug.Log(projectile_rb.velocity.magnitude);
                 if (projectile_rb.velocity.magnitude <= min_velocity_threshold)
                 {
+                    Debug.Log("builder victory");
                     this.gameObject.GetPhotonView().RPC("OutOfShots", RpcTarget.Others);
+                    last_shot_fired = false;
                 }
             }
         }

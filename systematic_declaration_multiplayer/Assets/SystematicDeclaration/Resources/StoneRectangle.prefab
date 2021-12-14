@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 9170620998516122242}
   - component: {fileID: 226435858130051144}
   - component: {fileID: -2999690602425256715}
+  - component: {fileID: -9171784985998813675}
   m_Layer: 0
   m_Name: StoneRectangle
-  m_TagString: Untagged
+  m_TagString: TowerPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,6 +117,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0754f39927cd9cb4b8101bea229b5ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  block_sound_name: 
+--- !u!114 &-9171784985998813675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3071827935679526810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 275102c968c3f724e8f9dd930bfec0d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  block_sound_name: 
 --- !u!1001 &4630894720089407610
 PrefabInstance:
   m_ObjectHideFlags: 0
